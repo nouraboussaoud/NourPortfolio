@@ -36,16 +36,17 @@
         }
 
         header {
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
+            padding: 40px 20px;
         }
 
         .hero-title {
-            font-size: 5rem;
+            font-size: clamp(2.5rem, 8vw, 5rem);
             font-weight: 900;
             background: linear-gradient(45deg, #00f2fe, #4facfe, #00f2fe);
             -webkit-background-clip: text;
@@ -61,34 +62,46 @@
         }
 
         .hero-subtitle {
-            font-size: 1.5rem;
+            font-size: clamp(1rem, 3vw, 1.5rem);
             color: #aaa;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
+        }
+
+        .hero-description {
+            color: #aaa;
+            max-width: 600px;
+            margin: 20px auto;
+            line-height: 1.6;
+            font-size: clamp(0.9rem, 2vw, 1rem);
         }
 
         .contact-links {
             display: flex;
-            gap: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
             margin-top: 30px;
+            justify-content: center;
         }
 
         .contact-links a {
             color: #00f2fe;
             text-decoration: none;
-            padding: 10px 20px;
+            padding: 12px 24px;
             border: 2px solid #00f2fe;
             border-radius: 25px;
             transition: all 0.3s;
+            font-size: 0.95rem;
         }
 
         .contact-links a:hover {
             background: #00f2fe;
             color: #0a0a0a;
             box-shadow: 0 0 20px #00f2fe;
+            transform: translateY(-2px);
         }
 
         .section-title {
-            font-size: 3rem;
+            font-size: clamp(2rem, 5vw, 3rem);
             text-align: center;
             margin: 80px 0 60px;
             background: linear-gradient(45deg, #f093fb, #f5576c);
@@ -98,19 +111,13 @@
         }
 
         .skills-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 25px;
             margin-bottom: 100px;
-            max-width: 1200px;
-            margin-left: auto;
-            margin-right: auto;
         }
 
         .skill-card {
-            flex: 0 1 calc(33.333% - 20px);
-            min-width: 280px;
             background: linear-gradient(135deg, rgba(10, 10, 10, 0.8), rgba(20, 20, 20, 0.6));
             backdrop-filter: blur(20px);
             border: 1px solid rgba(0, 242, 254, 0.2);
@@ -119,11 +126,6 @@
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             overflow: hidden;
-        }
-
-        .skill-card:nth-child(4),
-        .skill-card:nth-child(5) {
-            flex: 0 1 calc(33.333% - 20px);
         }
 
         .skill-card::before {
@@ -144,7 +146,7 @@
         }
 
         .skill-card:hover {
-            transform: translateY(-8px) scale(1.02);
+            transform: translateY(-8px);
             border-color: #00f2fe;
             box-shadow: 0 15px 40px rgba(0, 242, 254, 0.25);
             background: linear-gradient(135deg, rgba(15, 15, 15, 0.9), rgba(25, 25, 25, 0.7));
@@ -153,7 +155,7 @@
         .skill-card h3 {
             color: #fff;
             margin-bottom: 25px;
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             font-weight: 700;
             letter-spacing: 0.5px;
             text-transform: uppercase;
@@ -174,7 +176,7 @@
             color: #e0e0e0;
             padding: 8px 16px;
             border-radius: 20px;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             border: 1px solid rgba(0, 242, 254, 0.3);
             transition: all 0.3s;
         }
@@ -188,15 +190,15 @@
 
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
             margin-bottom: 100px;
         }
 
         .project-card {
             background: linear-gradient(135deg, rgba(79, 172, 254, 0.1), rgba(0, 242, 254, 0.1));
             border: 2px solid transparent;
-            border-radius: 25px;
+            border-radius: 20px;
             padding: 30px;
             position: relative;
             overflow: hidden;
@@ -221,9 +223,9 @@
         }
 
         .project-card:hover {
-            transform: scale(1.05);
+            transform: translateY(-5px);
             border-color: #00f2fe;
-            box-shadow: 0 30px 60px rgba(0, 242, 254, 0.4);
+            box-shadow: 0 20px 40px rgba(0, 242, 254, 0.3);
         }
 
         .project-content {
@@ -232,7 +234,7 @@
         }
 
         .project-card h3 {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             margin-bottom: 15px;
             color: #00f2fe;
         }
@@ -241,32 +243,38 @@
             color: #ccc;
             line-height: 1.6;
             margin-bottom: 20px;
+            font-size: 0.95rem;
         }
 
         .tech-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 8px;
             margin-top: 20px;
         }
 
         .tech-tag {
             background: rgba(0, 242, 254, 0.2);
             color: #00f2fe;
-            padding: 5px 15px;
-            border-radius: 15px;
-            font-size: 0.9rem;
+            padding: 5px 12px;
+            border-radius: 12px;
+            font-size: 0.8rem;
             border: 1px solid rgba(0, 242, 254, 0.3);
         }
 
-        .project-link {
-            display: inline-block;
+        .project-links {
             margin-top: 15px;
-            margin-right: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .project-link {
             color: #f5576c;
             text-decoration: none;
             font-weight: 600;
             transition: all 0.3s;
+            font-size: 0.9rem;
         }
 
         .project-link:hover {
@@ -276,20 +284,19 @@
 
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
             margin-bottom: 100px;
         }
 
         .service-card {
             background: linear-gradient(135deg, rgba(79, 172, 254, 0.1), rgba(0, 242, 254, 0.1));
             border: 2px solid transparent;
-            border-radius: 25px;
+            border-radius: 20px;
             padding: 30px;
             position: relative;
             overflow: hidden;
             transition: all 0.4s;
-            cursor: pointer;
         }
 
         .service-card::before {
@@ -309,18 +316,18 @@
         }
 
         .service-card:hover {
-            transform: scale(1.05);
+            transform: translateY(-5px);
             border-color: #00f2fe;
-            box-shadow: 0 30px 60px rgba(0, 242, 254, 0.4);
+            box-shadow: 0 20px 40px rgba(0, 242, 254, 0.3);
         }
 
-        .service-card .service-content {
+        .service-content {
             position: relative;
             z-index: 1;
         }
 
         .service-card h3 {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             margin-bottom: 15px;
             color: #00f2fe;
         }
@@ -328,30 +335,32 @@
         .service-card p {
             color: #ccc;
             line-height: 1.6;
-            margin-bottom: 20px;
+            font-size: 0.95rem;
         }
 
         footer {
             text-align: center;
-            padding: 50px 0;
+            padding: 50px 20px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
+        footer p {
+            margin: 5px 0;
+        }
+
         @media (max-width: 768px) {
-            .hero-title {
-                font-size: 3rem;
+            .container {
+                padding: 15px;
             }
-            .section-title {
-                font-size: 2rem;
-            }
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
+
+            .skills-grid,
+            .projects-grid,
             .services-grid {
                 grid-template-columns: 1fr;
             }
-            .skill-card {
-                flex: 0 1 100%;
+
+            .section-title {
+                margin: 60px 0 40px;
             }
         }
     </style>
@@ -363,7 +372,7 @@
         <header>
             <h1 class="hero-title">NOUR ABOUSSAOUD</h1>
             <p class="hero-subtitle">Full-Stack Software Engineer | DevOps & ML Enthusiast</p>
-            <p style="color: #aaa; max-width: 600px; margin: 20px auto;">
+            <p class="hero-description">
                 Passionate about creating innovative applications, automating DevOps processes, and artificial intelligence. 
                 Specialized in full-stack development, CI/CD, and Machine Learning.
             </p>
@@ -444,7 +453,8 @@
 
         <section id="projects">
             <h2 class="section-title">Featured Projects</h2>
-            <div class="project-card">
+            <div class="projects-grid">
+                <div class="project-card">
                     <div class="project-content">
                         <h3>FlowPi - Integrated Project Management</h3>
                         <p>Complete academic project management solution with role-based access control. Integrates project creation/assignment, team formation based on skills, communication tools, and AI modules for automated evaluation, plagiarism detection, and personalized recommendations.</p>
@@ -455,11 +465,12 @@
                             <span class="tech-tag">AI</span>
                             <span class="tech-tag">Agile</span>
                         </div>
-                        <a href="https://github.com/nouraboussaoud/FlowPiFront" class="project-link" target="_blank">Frontend →</a>
-                        <a href="https://github.com/nouraboussaoud/IntegratedProjectManagementApplication" class="project-link" target="_blank">Full Project →</a>
+                        <div class="project-links">
+                            <a href="https://github.com/nouraboussaoud/FlowPiFront" class="project-link" target="_blank">Frontend →</a>
+                            <a href="https://github.com/nouraboussaoud/IntegratedProjectManagementApplication" class="project-link" target="_blank">Full Project →</a>
+                        </div>
                     </div>
                 </div>
-            
 
                 <div class="project-card">
                     <div class="project-content">
@@ -472,7 +483,9 @@
                             <span class="tech-tag">Hugging Face</span>
                             <span class="tech-tag">PostgreSQL</span>
                         </div>
-                        <a href="https://github.com/nouraboussaoud/Andromeda" class="project-link" target="_blank">View on GitHub →</a>
+                        <div class="project-links">
+                            <a href="https://github.com/nouraboussaoud/Andromeda" class="project-link" target="_blank">View on GitHub →</a>
+                        </div>
                     </div>
                 </div>
 
@@ -486,10 +499,13 @@
                             <span class="tech-tag">Machine Learning</span>
                             <span class="tech-tag">REST API</span>
                         </div>
-                        <a href="https://github.com/nouraboussaoud/student-performance-api" class="project-link" target="_blank">View on GitHub →</a>
+                        <div class="project-links">
+                            <a href="https://github.com/nouraboussaoud/student-performance-api" class="project-link" target="_blank">View on GitHub →</a>
+                        </div>
                     </div>
                 </div>
-            <div class="project-card">
+
+                <div class="project-card">
                     <div class="project-content">
                         <h3>BookShare - Book Sharing</h3>
                         <p>Community sharing platform with personal library management and user-to-user lending system. Integrated Hugging Face API to provide intelligent book recommendations and sentiment-based reviews analysis.</p>
@@ -499,7 +515,9 @@
                             <span class="tech-tag">MySQL</span>
                             <span class="tech-tag">Web App</span>
                         </div>
-                        <a href="https://github.com/nouraboussaoud/bookShare" class="project-link" target="_blank">View on GitHub →</a>
+                        <div class="project-links">
+                            <a href="https://github.com/nouraboussaoud/bookShare" class="project-link" target="_blank">View on GitHub →</a>
+                        </div>
                     </div>
                 </div>
 
@@ -513,10 +531,12 @@
                             <span class="tech-tag">Kubernetes</span>
                             <span class="tech-tag">SonarQube</span>
                         </div>
-                        <a href="https://github.com/nouraboussaoud/achat-4TWIN9-groupe-6" class="project-link" target="_blank">View on GitHub →</a>
+                        <div class="project-links">
+                            <a href="https://github.com/nouraboussaoud/achat-4TWIN9-groupe-6" class="project-link" target="_blank">View on GitHub →</a>
+                        </div>
                     </div>
                 </div>
-            <div class="projects-grid">
+
                 <div class="project-card">
                     <div class="project-content">
                         <h3>Manager - User Management</h3>
@@ -527,7 +547,9 @@
                             <span class="tech-tag">Keycloak</span>
                             <span class="tech-tag">JWT</span>
                         </div>
-                        <a href="https://github.com/nouraboussaoud/Manager" class="project-link" target="_blank">View on GitHub →</a>
+                        <div class="project-links">
+                            <a href="https://github.com/nouraboussaoud/Manager" class="project-link" target="_blank">View on GitHub →</a>
+                        </div>
                     </div>
                 </div>
 
@@ -542,9 +564,12 @@
                             <span class="tech-tag">Doctrine ORM</span>
                             <span class="tech-tag">Twig</span>
                         </div>
-                        <a href="https://github.com/nouraboussaoud/NNN1" class="project-link" target="_blank">View on GitHub →</a>
+                        <div class="project-links">
+                            <a href="https://github.com/nouraboussaoud/NNN1" class="project-link" target="_blank">View on GitHub →</a>
+                        </div>
                     </div>
                 </div>
+
                 <div class="project-card">
                     <div class="project-content">
                         <h3>Plumber - Maintenance Service</h3>
@@ -555,7 +580,9 @@
                             <span class="tech-tag">Web App</span>
                             <span class="tech-tag">Service Management</span>
                         </div>
-                        <a href="https://github.com/nouraboussaoud/plombier" class="project-link" target="_blank">View on GitHub →</a>
+                        <div class="project-links">
+                            <a href="https://github.com/nouraboussaoud/plombier" class="project-link" target="_blank">View on GitHub →</a>
+                        </div>
                     </div>
                 </div>
 
@@ -569,7 +596,9 @@
                             <span class="tech-tag">Glade</span>
                             <span class="tech-tag">Linux</span>
                         </div>
-                        <a href="https://github.com/nouraboussaoud/ARKI" class="project-link" target="_blank">View on GitHub →</a>
+                        <div class="project-links">
+                            <a href="https://github.com/nouraboussaoud/ARKI" class="project-link" target="_blank">View on GitHub →</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -614,8 +643,13 @@
     <script>
         const canvas = document.getElementById('canvas');
         const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        
+        resizeCanvas();
 
         const particles = [];
         const particleCount = 100;
@@ -652,22 +686,22 @@
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             
-            particles.forEach(particle => {
-                particle.update();
-                particle.draw();
+            particles.forEach(p => {
+                p.update();
+                p.draw();
             });
 
             particles.forEach((p1, i) => {
                 particles.slice(i + 1).forEach(p2 => {
                     const dx = p1.x - p2.x;
                     const dy = p1.y - p2.y;
-                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    const dist = Math.sqrt(dx * dx + dy * dy);
 
-                    if (distance < 150) {
+                    if (dist < 150) {
                         ctx.beginPath();
                         ctx.moveTo(p1.x, p1.y);
                         ctx.lineTo(p2.x, p2.y);
-                        ctx.strokeStyle = `rgba(0, 242, 254, ${0.2 * (1 - distance / 150)})`;
+                        ctx.strokeStyle = `rgba(0, 242, 254, ${0.2 * (1 - dist / 150)})`;
                         ctx.stroke();
                     }
                 });
@@ -678,10 +712,7 @@
 
         animate();
 
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        });
+        window.addEventListener('resize', resizeCanvas);
 
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
