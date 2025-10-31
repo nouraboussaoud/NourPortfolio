@@ -112,9 +112,25 @@
 
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 25px;
             margin-bottom: 100px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .skills-grid .skill-card:nth-child(4),
+        .skills-grid .skill-card:nth-child(5) {
+            grid-column: span 1;
+        }
+        
+        .skills-grid .skill-card:nth-child(4) {
+            grid-column: 1 / 2;
+        }
+        
+        .skills-grid .skill-card:nth-child(5) {
+            grid-column: 3 / 4;
         }
 
         .skill-card {
@@ -284,7 +300,7 @@
 
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 30px;
             margin-bottom: 100px;
         }
@@ -357,6 +373,15 @@
             .projects-grid,
             .services-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .skills-grid {
+                max-width: 100%;
+            }
+            
+            .skills-grid .skill-card:nth-child(4),
+            .skills-grid .skill-card:nth-child(5) {
+                grid-column: 1;
             }
 
             .section-title {
