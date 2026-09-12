@@ -1,739 +1,856 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nour Aboussaoud - Software Engineer</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nour Aboussaoud — Software Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #0a0a0a;
-            color: #fff;
-            overflow-x: hidden;
-        }
+  :root{
+    --ink-900:#0a1c30;
+    --ink-800:#0f2540;
+    --ink-700:#173355;
+    --line-100:#eef4f9;
+    --line-300:#bdd0e0;
+    --muted:#7d95ab;
+    --accent:#ff7a33;
+    --accent-dim:#c65a1f;
+    --grid:rgba(238,244,249,0.06);
+    --hair:rgba(189,208,224,0.18);
+    --radius:2px;
+    --font-display:'Space Grotesk', sans-serif;
+    --font-body:'IBM Plex Sans', sans-serif;
+    --font-mono:'IBM Plex Mono', monospace;
+  }
 
-        #canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-        }
+  *{margin:0;padding:0;box-sizing:border-box;}
 
-        .container {
-            position: relative;
-            z-index: 1;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
+  html{scroll-behavior:smooth;}
 
-        header {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 40px 20px;
-        }
+  body{
+    background:var(--ink-900);
+    color:var(--line-100);
+    font-family:var(--font-body);
+    font-size:16px;
+    line-height:1.55;
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size:44px 44px;
+  }
 
-        .hero-title {
-            font-size: clamp(2.5rem, 8vw, 5rem);
-            font-weight: 900;
-            background: linear-gradient(45deg, #00f2fe, #4facfe, #00f2fe);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: glow 3s ease-in-out infinite;
-            margin-bottom: 20px;
-        }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important;}
+  }
 
-        @keyframes glow {
-            0%, 100% { filter: drop-shadow(0 0 20px #00f2fe); }
-            50% { filter: drop-shadow(0 0 40px #4facfe); }
-        }
+  a{color:inherit;}
 
-        .hero-subtitle {
-            font-size: clamp(1rem, 3vw, 1.5rem);
-            color: #aaa;
-            margin-bottom: 20px;
-        }
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px;}
 
-        .hero-description {
-            color: #aaa;
-            max-width: 600px;
-            margin: 20px auto;
-            line-height: 1.6;
-            font-size: clamp(0.9rem, 2vw, 1rem);
-        }
+  /* ---------- running header ---------- */
+  .topbar{
+    position:sticky; top:0; z-index:20;
+    background:rgba(10,28,48,0.86);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--hair);
+  }
+  .topbar .wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    height:56px;
+    font-family:var(--font-mono);
+    font-size:12.5px;
+    letter-spacing:0.02em;
+    color:var(--line-300);
+  }
+  .topbar .mark{color:var(--line-100); font-weight:500;}
+  .topbar nav{display:flex; gap:22px;}
+  .topbar nav a{color:var(--line-300); text-decoration:none; transition:color .2s;}
+  .topbar nav a:hover{color:var(--accent);}
+  .topbar .idx{display:none;}
+  @media (min-width:640px){ .topbar .idx{display:inline;} }
 
-        .contact-links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-top: 30px;
-            justify-content: center;
-        }
+  /* ---------- hero ---------- */
+  header.hero{
+    padding:88px 0 60px;
+    border-bottom:1px solid var(--hair);
+  }
+  .hero .eyebrow-tag{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:var(--font-mono); font-size:12px; color:var(--accent);
+    border:1px solid rgba(255,122,51,0.35);
+    padding:5px 10px; margin-bottom:26px;
+  }
+  .hero .eyebrow-tag::before{content:'●'; font-size:8px;}
+  .hero h1{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:clamp(2.4rem, 6vw, 4.2rem);
+    line-height:1.04;
+    letter-spacing:-0.01em;
+    max-width:14ch;
+    color:var(--line-100);
+  }
+  .hero .role-line{
+    margin-top:18px;
+    font-family:var(--font-mono);
+    font-size:14px;
+    color:var(--line-300);
+    display:flex; flex-wrap:wrap; gap:10px 14px;
+  }
+  .hero .role-line span{white-space:nowrap;}
+  .hero .role-line span:not(:last-child)::after{content:'/'; margin-left:14px; color:var(--muted);}
+  .hero p.desc{
+    margin-top:26px;
+    max-width:56ch;
+    color:var(--line-300);
+    font-size:16.5px;
+  }
 
-        .contact-links a {
-            color: #00f2fe;
-            text-decoration: none;
-            padding: 12px 24px;
-            border: 2px solid #00f2fe;
-            border-radius: 25px;
-            transition: all 0.3s;
-            font-size: 0.95rem;
-        }
+  /* schematic diagram */
+  .schematic{
+    margin-top:52px;
+    overflow-x:auto;
+  }
+  .schematic svg{display:block; min-width:640px; width:100%; height:auto;}
+  .schem-node rect{fill:var(--ink-800); stroke:var(--line-300); stroke-width:1;}
+  .schem-node text{font-family:var(--font-mono); font-size:12.5px; fill:var(--line-100);}
+  .schem-node .sub{fill:var(--muted); font-size:10.5px;}
+  .schem-line{stroke:var(--line-300); stroke-width:1; fill:none;}
+  .schem-line.draw{
+    stroke-dasharray:400;
+    stroke-dashoffset:400;
+    animation:draw 1.6s ease forwards;
+  }
+  .schem-node.draw{opacity:0; animation:fadein .5s ease forwards;}
+  @keyframes draw{to{stroke-dashoffset:0;}}
+  @keyframes fadein{to{opacity:1;}}
+  .schem-tick{stroke:var(--accent); stroke-width:1.4;}
 
-        .contact-links a:hover {
-            background: #00f2fe;
-            color: #0a0a0a;
-            box-shadow: 0 0 20px #00f2fe;
-            transform: translateY(-2px);
-        }
+  /* title block, engineering-drawing convention */
+  .titleblock{
+    margin-top:56px;
+    border:1px solid var(--hair);
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    font-family:var(--font-mono);
+    font-size:12px;
+  }
+  .titleblock div{
+    padding:12px 16px;
+    border-right:1px solid var(--hair);
+  }
+  .titleblock div:last-child{border-right:none;}
+  .titleblock .k{display:block; color:var(--muted); font-size:10.5px; margin-bottom:4px; letter-spacing:0.03em;}
+  .titleblock .v{color:var(--line-100);}
+  @media (max-width:680px){
+    .titleblock{grid-template-columns:repeat(2,1fr);}
+    .titleblock div:nth-child(2){border-right:none;}
+  }
 
-        .section-title {
-            font-size: clamp(2rem, 5vw, 3rem);
-            text-align: center;
-            margin: 80px 0 60px;
-            background: linear-gradient(45deg, #f093fb, #f5576c);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
+  /* ---------- section shell ---------- */
+  section{padding:76px 0; border-bottom:1px solid var(--hair);}
+  .sheet-head{
+    display:flex; align-items:flex-end; justify-content:space-between;
+    margin-bottom:44px;
+    gap:20px;
+  }
+  .sheet-head h2{
+    font-family:var(--font-display);
+    font-weight:600;
+    font-size:clamp(1.5rem, 3vw, 2.1rem);
+    color:var(--line-100);
+  }
+  .sheet-no{
+    font-family:var(--font-mono);
+    font-size:12px;
+    color:var(--muted);
+    border:1px solid var(--hair);
+    padding:6px 10px;
+    white-space:nowrap;
+  }
+  .sheet-no b{color:var(--line-100); font-weight:500;}
 
-        .skills-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 25px;
-            margin-bottom: 100px;
-            max-width: 900px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .skill-card {
-            background: linear-gradient(135deg, rgba(10, 10, 10, 0.8), rgba(20, 20, 20, 0.6));
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(0, 242, 254, 0.2);
-            border-radius: 15px;
-            padding: 35px 30px;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            overflow: hidden;
-            flex: 0 1 calc(33.333% - 25px);
-            min-width: 280px;
-        }
+  /* ---------- skills as parts legend ---------- */
+  .legend{border-top:1px solid var(--hair);}
+  .legend-row{
+    display:grid;
+    grid-template-columns:64px 200px 1fr;
+    gap:20px;
+    padding:18px 0;
+    border-bottom:1px solid var(--hair);
+    align-items:start;
+  }
+  .legend-row .no{font-family:var(--font-mono); color:var(--muted); font-size:13px; padding-top:2px;}
+  .legend-row .cat{font-family:var(--font-display); font-weight:600; font-size:15px; color:var(--line-100); padding-top:1px;}
+  .chips{display:flex; flex-wrap:wrap; gap:8px;}
+  .chip{
+    font-family:var(--font-mono);
+    font-size:12px;
+    color:var(--line-300);
+    border:1px solid var(--hair);
+    padding:5px 10px;
+    transition:border-color .18s, color .18s;
+  }
+  .chip:hover{border-color:var(--accent); color:var(--accent);}
+  @media (max-width:680px){
+    .legend-row{grid-template-columns:32px 1fr; row-gap:10px;}
+    .legend-row .cat{grid-column:2;}
+    .legend-row .chips{grid-column:1 / -1;}
+  }
 
-        .skill-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, #00f2fe, #4facfe, #f093fb);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.4s ease;
-        }
+  /* ---------- featured project (MyBee) ---------- */
+  .feature{
+    border:1px solid var(--hair);
+    position:relative;
+  }
+  .feature-top{
+    display:flex; justify-content:space-between; align-items:flex-start;
+    padding:26px 26px 0;
+    gap:16px; flex-wrap:wrap;
+  }
+  .feature-tag{
+    font-family:var(--font-mono); font-size:11px; color:var(--accent);
+    border:1px solid rgba(255,122,51,0.35); padding:4px 9px;
+  }
+  .feature h3{
+    font-family:var(--font-display); font-weight:700;
+    font-size:clamp(1.5rem,3vw,2rem);
+    padding:14px 26px 0;
+  }
+  .feature .sub{
+    padding:6px 26px 0; color:var(--line-300); font-family:var(--font-mono); font-size:12.5px;
+  }
+  .feature p.body-text{
+    padding:20px 26px 0; max-width:64ch; color:var(--line-300);
+  }
+  .feature .stack{
+    padding:22px 26px 0;
+    display:flex; flex-wrap:wrap; gap:8px;
+  }
+  .feature .note{
+    padding:22px 26px 0; color:var(--muted); font-size:13px; font-style:normal;
+  }
+  .feature .note b{color:var(--line-300); font-weight:500;}
 
-        .skill-card:hover::before {
-            transform: scaleX(1);
-        }
+  /* mini architecture diagram for mybee */
+  .mini-arch{padding:30px 10px 26px;}
+  .mini-arch svg{display:block; width:100%; height:auto; min-width:560px;}
+  .arch-box rect{fill:var(--ink-800); stroke:var(--line-300); stroke-width:1;}
+  .arch-box text{font-family:var(--font-mono); fill:var(--line-100); font-size:11.5px;}
+  .arch-box .lbl{fill:var(--muted); font-size:9.5px;}
+  .arch-arrow{stroke:var(--line-300); stroke-width:1; fill:none; marker-end:url(#arrowhead);}
+  .arch-arrow.accent{stroke:var(--accent); marker-end:url(#arrowhead-accent);}
 
-        .skill-card:hover {
-            transform: translateY(-8px);
-            border-color: #00f2fe;
-            box-shadow: 0 15px 40px rgba(0, 242, 254, 0.25);
-            background: linear-gradient(135deg, rgba(15, 15, 15, 0.9), rgba(25, 25, 25, 0.7));
-        }
+  /* ---------- other projects: spec rows ---------- */
+  .proj-row{
+    display:grid;
+    grid-template-columns:120px 1fr;
+    gap:24px;
+    padding:26px 0;
+    border-bottom:1px solid var(--hair);
+  }
+  .proj-row:first-child{border-top:1px solid var(--hair);}
+  .proj-icon{display:flex; align-items:flex-start; justify-content:flex-start; padding-top:4px;}
+  .proj-icon svg{width:52px; height:52px;}
+  .proj-icon rect, .proj-icon circle, .proj-icon line, .proj-icon path{stroke:var(--line-300); fill:none; stroke-width:1.2;}
+  .proj-row:hover .proj-icon rect, .proj-row:hover .proj-icon circle, .proj-row:hover .proj-icon line, .proj-row:hover .proj-icon path{stroke:var(--accent);}
+  .proj-body h4{
+    font-family:var(--font-display); font-weight:600; font-size:17px; color:var(--line-100);
+    display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+  }
+  .status{
+    font-family:var(--font-mono); font-size:10.5px; color:var(--muted);
+    border:1px solid var(--hair); padding:2px 7px;
+  }
+  .proj-body p{margin-top:8px; color:var(--line-300); font-size:14.5px; max-width:68ch;}
+  .proj-body .stack{margin-top:14px; display:flex; flex-wrap:wrap; gap:7px;}
+  .proj-links{margin-top:14px; display:flex; gap:18px; flex-wrap:wrap;}
+  .proj-link{
+    display:inline-flex; align-items:center; gap:7px;
+    font-family:var(--font-mono); font-size:12.5px; color:var(--line-300);
+    text-decoration:none; border-bottom:1px solid transparent; padding-bottom:1px;
+    transition:color .18s, border-color .18s;
+  }
+  .proj-link::before{content:'▸'; color:var(--accent); font-size:10px;}
+  .proj-link:hover{color:var(--accent); border-color:var(--accent);}
+  @media (max-width:640px){
+    .proj-row{grid-template-columns:1fr;}
+    .proj-icon{padding-top:0;}
+  }
 
-        .skill-card h3 {
-            color: #fff;
-            margin-bottom: 25px;
-            font-size: 1.3rem;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            background: linear-gradient(135deg, #00f2fe, #4facfe);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
+  /* ---------- capabilities (services) ---------- */
+  .cap-grid{
+    border-top:1px solid var(--hair);
+    display:grid;
+    grid-template-columns:1fr 1fr;
+  }
+  .cap{
+    padding:26px 26px 26px 0;
+    border-bottom:1px solid var(--hair);
+    position:relative;
+  }
+  .cap:nth-child(odd){border-right:1px solid var(--hair); padding-right:26px;}
+  .cap:nth-child(even){padding-left:26px;}
+  .cap .num{font-family:var(--font-mono); font-size:12px; color:var(--accent);}
+  .cap h4{font-family:var(--font-display); font-weight:600; font-size:16.5px; margin-top:10px; color:var(--line-100);}
+  .cap p{margin-top:10px; color:var(--line-300); font-size:14px;}
+  @media (max-width:680px){
+    .cap-grid{grid-template-columns:1fr;}
+    .cap:nth-child(odd){border-right:none;}
+    .cap:nth-child(even){padding-left:0;}
+  }
 
-        .skill-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .skill-tag {
-            background: rgba(0, 242, 254, 0.1);
-            color: #e0e0e0;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            border: 1px solid rgba(0, 242, 254, 0.3);
-            transition: all 0.3s;
-        }
-
-        .skill-tag:hover {
-            background: rgba(0, 242, 254, 0.2);
-            border-color: #00f2fe;
-            color: #00f2fe;
-            transform: translateY(-2px);
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-            margin-bottom: 100px;
-        }
-
-        .project-card {
-            background: linear-gradient(135deg, rgba(79, 172, 254, 0.1), rgba(0, 242, 254, 0.1));
-            border: 2px solid transparent;
-            border-radius: 20px;
-            padding: 30px;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s;
-            cursor: pointer;
-        }
-
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, #00f2fe, #4facfe);
-            opacity: 0;
-            transition: opacity 0.4s;
-        }
-
-        .project-card:hover::before {
-            opacity: 0.1;
-        }
-
-        .project-card:hover {
-            transform: translateY(-5px);
-            border-color: #00f2fe;
-            box-shadow: 0 20px 40px rgba(0, 242, 254, 0.3);
-        }
-
-        .project-content {
-            position: relative;
-            z-index: 1;
-        }
-
-        .project-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: #00f2fe;
-        }
-
-        .project-card p {
-            color: #ccc;
-            line-height: 1.6;
-            margin-bottom: 20px;
-            font-size: 0.95rem;
-        }
-
-        .tech-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 20px;
-        }
-
-        .tech-tag {
-            background: rgba(0, 242, 254, 0.2);
-            color: #00f2fe;
-            padding: 5px 12px;
-            border-radius: 12px;
-            font-size: 0.8rem;
-            border: 1px solid rgba(0, 242, 254, 0.3);
-        }
-
-        .project-links {
-            margin-top: 15px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .project-link {
-            color: #f5576c;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-            font-size: 0.9rem;
-        }
-
-        .project-link:hover {
-            color: #f093fb;
-            text-shadow: 0 0 10px #f5576c;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
-            margin-bottom: 100px;
-        }
-
-        .service-card {
-            background: linear-gradient(135deg, rgba(79, 172, 254, 0.1), rgba(0, 242, 254, 0.1));
-            border: 2px solid transparent;
-            border-radius: 20px;
-            padding: 30px;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s;
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, #00f2fe, #4facfe);
-            opacity: 0;
-            transition: opacity 0.4s;
-        }
-
-        .service-card:hover::before {
-            opacity: 0.1;
-        }
-
-        .service-card:hover {
-            transform: translateY(-5px);
-            border-color: #00f2fe;
-            box-shadow: 0 20px 40px rgba(0, 242, 254, 0.3);
-        }
-
-        .service-content {
-            position: relative;
-            z-index: 1;
-        }
-
-        .service-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: #00f2fe;
-        }
-
-        .service-card p {
-            color: #ccc;
-            line-height: 1.6;
-            font-size: 0.95rem;
-        }
-
-        footer {
-            text-align: center;
-            padding: 50px 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        footer p {
-            margin: 5px 0;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 15px;
-            }
-
-            .skills-grid {
-                flex-direction: column;
-                align-items: center;
-                max-width: 100%;
-            }
-
-            .projects-grid,
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .section-title {
-                margin: 60px 0 40px;
-            }
-        }
-    </style>
+  /* ---------- footer / contact title block ---------- */
+  footer{padding:70px 0 50px;}
+  footer .sheet-head{margin-bottom:34px;}
+  .contact-list{border-top:1px solid var(--hair);}
+  .contact-row{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:16px 0; border-bottom:1px solid var(--hair);
+    font-family:var(--font-mono); font-size:14px;
+    text-decoration:none; color:var(--line-100);
+  }
+  .contact-row .k{color:var(--muted); font-size:12px;}
+  .contact-row .v{display:flex; align-items:center; gap:10px;}
+  .contact-row:hover .v{color:var(--accent);}
+  .contact-row .arrow{transition:transform .2s;}
+  .contact-row:hover .arrow{transform:translateX(4px); color:var(--accent);}
+  footer .meta{
+    margin-top:40px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+    font-family:var(--font-mono); font-size:11.5px; color:var(--muted);
+  }
+</style>
 </head>
 <body>
-    <canvas id="canvas"></canvas>
-    
-    <div class="container">
-        <header>
-            <h1 class="hero-title">NOUR ABOUSSAOUD</h1>
-            <p class="hero-subtitle">IT Engineer | Full-Stack Development, DevOps & AI</p>
-            <p class="hero-description">
-                Passionate about creating innovative applications, automating DevOps processes, and artificial intelligence. 
-                Specialized in full-stack development, CI/CD, and Machine Learning.
-            </p>
-            <div class="contact-links">
-                <a href="mailto:nour.aboussaoud@esprit.tn">Email</a>
-                <a href="https://github.com/nouraboussaoud" target="_blank">GitHub</a>
-                <a href="tel:27596886">Phone</a>
-            </div>
-        </header>
 
-        <section id="skills">
-            <h2 class="section-title">Technical Skills</h2>
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <h3>Frontend Development</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">React.js</span>
-                        <span class="skill-tag">Angular</span>
-                        <span class="skill-tag">Svelte</span>
-                        <span class="skill-tag">JavaScript</span>
-                        <span class="skill-tag">TypeScript</span>
-                        <span class="skill-tag">HTML5</span>
-                        <span class="skill-tag">CSS3</span>
-                        <span class="skill-tag">UI/UX Design</span>
-                    </div>
-                </div>
-                <div class="skill-card">
-                    <h3>Backend Development</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Spring Boot</span>
-                        <span class="skill-tag">Express.js</span>
-                        <span class="skill-tag">Symfony</span>
-                        <span class="skill-tag">Laravel</span>
-                        <span class="skill-tag">Django</span>
-                        <span class="skill-tag">Flask</span>
-                        <span class="skill-tag">Java</span>
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">PHP</span>
-                    </div>
-                </div>
-                <div class="skill-card">
-                    <h3>Databases</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">MongoDB</span>
-                        <span class="skill-tag">MySQL</span>
-                        <span class="skill-tag">PostgreSQL</span>
-                        <span class="skill-tag">Big Data</span>
-                    </div>
-                </div>
-                <div class="skill-card">
-                    <h3>DevOps & Cloud</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Docker</span>
-                        <span class="skill-tag">Kubernetes</span>
-                        <span class="skill-tag">Jenkins</span>
-                        <span class="skill-tag">GitHub Actions</span>
-                        <span class="skill-tag">SonarQube</span>
-                        <span class="skill-tag">Nexus</span>
-                        <span class="skill-tag">Prometheus</span>
-                        <span class="skill-tag">Grafana</span>
-                        <span class="skill-tag">CI/CD</span>
-                    </div>
-                </div>
-                <div class="skill-card">
-                    <h3>Data Science & ML</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">Machine Learning</span>
-                        <span class="skill-tag">Flask API</span>
-                        <span class="skill-tag">OpenAI</span>
-                        <span class="skill-tag">Hugging Face</span>
-                        <span class="skill-tag">Jupyter</span>
-                        <span class="skill-tag">Model Serving</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="projects">
-            <h2 class="section-title">Featured Projects</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-content">
-                        <h3>FlowPi - Integrated Project Management</h3>
-                        <p>Complete academic project management solution with role-based access control. Integrates project creation and assignment, team formation based on skills, communication tools, and AI modules for automated evaluation, plagiarism detection, and personalized recommendations. Incorporates Hugging Face and OpenAI APIs to power advanced NLP capabilities, intelligent feedback generation, and content analysis.</p>
-                        <div class="tech-tags">
-                            <span class="tech-tag">React.js</span>
-                            <span class="tech-tag">Express.js</span>
-                            <span class="tech-tag">MongoDB</span>
-                            <span class="tech-tag">AI</span>
-                            <span class="tech-tag">Agile</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/nouraboussaoud/FlowPiFront" class="project-link" target="_blank">Frontend →</a>
-                            <a href="https://github.com/nouraboussaoud/IntegratedProjectManagementApplication" class="project-link" target="_blank">Full Project →</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-content">
-                        <h3>Andromeda - AI Memories</h3>
-                        <p>Journaling application with AI-powered text and image analysis, memory albums, time capsules, and secure authentication developed with Django. Integrated Hugging Face and OpenAI APIs to enable emotional sentiment detection, memory summarization, and intelligent content generation.</p>
-                        <div class="tech-tags">
-                            <span class="tech-tag">Django</span>
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">OpenAI</span>
-                            <span class="tech-tag">Hugging Face</span>
-                            <span class="tech-tag">PostgreSQL</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/nouraboussaoud/Andromeda" class="project-link" target="_blank">View on GitHub →</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-content">
-                        <h3>Student Performance API</h3>
-                        <p>Flask API deploying ML models in production, transforming Jupyter notebooks into operational services.</p>
-                        <div class="tech-tags">
-                            <span class="tech-tag">Flask</span>
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">Machine Learning</span>
-                            <span class="tech-tag">REST API</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/nouraboussaoud/student-performance-api" class="project-link" target="_blank">View on GitHub →</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-content">
-                        <h3>BookShare - Book Sharing</h3>
-                        <p>Community sharing platform with personal library management and user-to-user lending system. Integrated Hugging Face API to provide intelligent book recommendations and sentiment-based reviews analysis.</p>
-                        <div class="tech-tags">
-                            <span class="tech-tag">Laravel</span>
-                            <span class="tech-tag">PHP</span>
-                            <span class="tech-tag">MySQL</span>
-                            <span class="tech-tag">Web App</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/nouraboussaoud/bookShare" class="project-link" target="_blank">View on GitHub →</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-content">
-                        <h3>DevOps - CI/CD Pipeline</h3>
-                        <p>Complete automation with Jenkins, Docker, Kubernetes, and SonarQube for Spring Boot/Angular application.</p>
-                        <div class="tech-tags">
-                            <span class="tech-tag">Jenkins</span>
-                            <span class="tech-tag">Docker</span>
-                            <span class="tech-tag">Kubernetes</span>
-                            <span class="tech-tag">SonarQube</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/nouraboussaoud/achat-4TWIN9-groupe-6" class="project-link" target="_blank">View on GitHub →</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-content">
-                        <h3>Manager - User Management</h3>
-                        <p>Complete user and account management system with Keycloak authentication, developed in Spring Boot and Angular.</p>
-                        <div class="tech-tags">
-                            <span class="tech-tag">Spring Boot</span>
-                            <span class="tech-tag">Angular</span>
-                            <span class="tech-tag">Keycloak</span>
-                            <span class="tech-tag">JWT</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/nouraboussaoud/Manager" class="project-link" target="_blank">View on GitHub →</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-content">
-                        <h3>Nature Nerd Network (NNN)</h3>
-                        <p>Nature-themed social network integrating e-commerce, events, reward system, interactive quizzes, and environmental certifications.</p>
-                        <div class="tech-tags">
-                            <span class="tech-tag">Symfony</span>
-                            <span class="tech-tag">PHP</span>
-                            <span class="tech-tag">MySQL</span>
-                            <span class="tech-tag">Doctrine ORM</span>
-                            <span class="tech-tag">Twig</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/nouraboussaoud/NNN1" class="project-link" target="_blank">View on GitHub →</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-content">
-                        <h3>Plumber - Maintenance Service</h3>
-                        <p>Platform connecting clients and plumbing service providers with intervention management and real-time tracking.</p>
-                        <div class="tech-tags">
-                            <span class="tech-tag">Svelte</span>
-                            <span class="tech-tag">Full-Stack</span>
-                            <span class="tech-tag">Web App</span>
-                            <span class="tech-tag">Service Management</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/nouraboussaoud/plombier" class="project-link" target="_blank">View on GitHub →</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-content">
-                        <h3>ARKI - Desktop Application</h3>
-                        <p>Native application developed in C with GTK graphical interface built via Glade for Linux.</p>
-                        <div class="tech-tags">
-                            <span class="tech-tag">C</span>
-                            <span class="tech-tag">GTK+</span>
-                            <span class="tech-tag">Glade</span>
-                            <span class="tech-tag">Linux</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/nouraboussaoud/ARKI" class="project-link" target="_blank">View on GitHub →</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="services">
-            <h2 class="section-title">Services</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-content">
-                        <h3>Full-Stack Web Development</h3>
-                        <p>Building robust and scalable web applications using modern technologies like React, Angular, Spring Boot, Django, and more. From concept to deployment, I deliver end-to-end solutions tailored to your needs.</p>
-                    </div>
-                </div>
-                <div class="service-card">
-                    <div class="service-content">
-                        <h3>DevOps & CI/CD Implementation</h3>
-                        <p>Automate your development pipeline with Docker, Kubernetes, Jenkins, and GitHub Actions. Ensure reliable deployments, monitoring, and scalability for your applications.</p>
-                    </div>
-                </div>
-                <div class="service-card">
-                    <div class="service-content">
-                        <h3>Machine Learning Solutions</h3>
-                        <p>Integrate AI capabilities into your projects with custom ML models, API development, and data analysis. Leveraging tools like Python, Flask, OpenAI, and Google Vision.</p>
-                    </div>
-                </div>
-                <div class="service-card">
-                    <div class="service-content">
-                        <h3>API Development & Integration</h3>
-                        <p>Design and implement secure RESTful APIs with authentication, documentation, and integration capabilities. Connect your systems seamlessly.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <footer>
-            <p style="color: #aaa;">© 2025 Nour Aboussaoud - All rights reserved</p>
-            <p style="color: #666; margin-top: 10px;">Ariana, Tunisia | nour.aboussaoud@esprit.tn</p>
-        </footer>
+  <div class="topbar">
+    <div class="wrap">
+      <span class="mark">N. ABOUSSAOUD</span>
+      <nav>
+        <a href="#education"><span class="idx">00 /</span> Education</a>
+        <a href="#skills"><span class="idx">01 /</span> Skills</a>
+        <a href="#mybee"><span class="idx">02 /</span> MyBee</a>
+        <a href="#projects"><span class="idx">03 /</span> Projects</a>
+        <a href="#services"><span class="idx">04 /</span> Capabilities</a>
+        <a href="#contact"><span class="idx">05 /</span> Contact</a>
+      </nav>
     </div>
+  </div>
 
-    <script>
-        const canvas = document.getElementById('canvas');
-        const ctx = canvas.getContext('2d');
-        
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        
-        resizeCanvas();
+  <header class="hero">
+    <div class="wrap">
+      <span class="eyebrow-tag">AVAILABLE FOR OPPORTUNITIES</span>
+      <h1>I build the systems<br>underneath the product.</h1>
+      <div class="role-line">
+        <span>Full-stack development</span>
+        <span>DevOps &amp; CI/CD</span>
+        <span>Applied AI</span>
+      </div>
+      <p class="desc">
+        Nour Aboussaoud — Fresh graduate software engineer based in Ariana, Tunisia.
+        I design and ship full-stack applications, wire up the pipelines that deploy them, and
+        add AI where it genuinely earns its place — not because it's trendy.
+      </p>
 
-        const particles = [];
-        const particleCount = 100;
+      <div class="schematic">
+        <svg viewBox="0 0 900 150" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <marker id="tick" markerWidth="6" markerHeight="6"></marker>
+          </defs>
+          <!-- connectors -->
+          <path class="schem-line draw" style="animation-delay:.1s"  d="M130,60 H210" />
+          <path class="schem-line draw" style="animation-delay:.5s"  d="M330,60 H420" />
+          <path class="schem-line draw" style="animation-delay:.9s"  d="M540,60 H630" />
+          <!-- dimension line -->
+          <line class="schem-tick" x1="20" y1="120" x2="20" y2="128"/>
+          <line class="schem-tick" x1="850" y1="120" x2="850" y2="128"/>
+          <line class="schem-line" x1="20" y1="124" x2="850" y2="124" stroke-dasharray="3 4"/>
+          <text x="435" y="145" text-anchor="middle" font-family="IBM Plex Mono" font-size="10.5" fill="var(--muted)">CAREER PATH — FRONTEND → BACKEND → DEVOPS → APPLIED AI</text>
 
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.vx = (Math.random() - 0.5) * 0.5;
-                this.vy = (Math.random() - 0.5) * 0.5;
-                this.radius = Math.random() * 2;
-            }
+          <!-- node 1 -->
+          <g class="schem-node draw" style="animation-delay:0s">
+            <rect x="20" y="30" width="110" height="60"/>
+            <text x="75" y="58" text-anchor="middle">FRONTEND</text>
+            <text class="sub" x="75" y="74" text-anchor="middle">React · Angular</text>
+          </g>
+          <!-- node 2 -->
+          <g class="schem-node draw" style="animation-delay:.4s">
+            <rect x="210" y="30" width="120" height="60"/>
+            <text x="270" y="58" text-anchor="middle">BACKEND</text>
+            <text class="sub" x="270" y="74" text-anchor="middle">Spring · Django</text>
+          </g>
+          <!-- node 3 -->
+          <g class="schem-node draw" style="animation-delay:.8s">
+            <rect x="420" y="30" width="120" height="60"/>
+            <text x="480" y="58" text-anchor="middle">DEVOPS</text>
+            <text class="sub" x="480" y="74" text-anchor="middle">Docker · CI/CD</text>
+          </g>
+          <!-- node 4 -->
+          <g class="schem-node draw" style="animation-delay:1.2s">
+            <rect x="630" y="30" width="120" height="60"/>
+            <text x="690" y="58" text-anchor="middle">APPLIED AI</text>
+            <text class="sub" x="690" y="74" text-anchor="middle">RAG · LLM tooling</text>
+          </g>
+        </svg>
+      </div>
 
-            update() {
-                this.x += this.vx;
-                this.y += this.vy;
+      <div class="titleblock">
+        <div><span class="k">DRAWN BY</span><span class="v">Nour Aboussaoud</span></div>
+        <div><span class="k">DISCIPLINE</span><span class="v">Full-Stack / DevOps / AI</span></div>
+        <div><span class="k">LOCATION</span><span class="v">Ariana, Tunisia</span></div>
+        <div><span class="k">REV</span><span class="v">2025</span></div>
+      </div>
+    </div>
+  </header>
 
-                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
-                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
-            }
+  <!-- ============ EDUCATION ============ -->
+  <section id="education">
+    <div class="wrap">
+      <div class="sheet-head">
+        <h2>Education</h2>
+        <span class="sheet-no">SHEET <b>00</b> / RECORD</span>
+      </div>
 
-            draw() {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                ctx.fillStyle = 'rgba(0, 242, 254, 0.5)';
-                ctx.fill();
-            }
-        }
+      <div class="legend">
+        <div class="legend-row">
+          <div class="no">09/2022<br>— 09/2026</div>
+          <div class="cat">ESPRIT — Private School of Engineering and Technologies</div>
+          <div class="chips">
+            <span class="chip">Software Engineering Cycle</span><span class="chip">Tunis, Tunisia</span>
+          </div>
+        </div>
+        <div class="legend-row">
+          <div class="no">09/2020<br>— 06/2022</div>
+          <div class="cat">ISSAT Gabès</div>
+          <div class="chips">
+            <span class="chip">Preparatory Cycle</span><span class="chip">Gabès, Tunisia</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        for (let i = 0; i < particleCount; i++) {
-            particles.push(new Particle());
-        }
+  <!-- ============ SKILLS ============ -->
+  <section id="skills">
+    <div class="wrap">
+      <div class="sheet-head">
+        <h2>Technical skills</h2>
+        <span class="sheet-no">SHEET <b>01</b> / LEGEND</span>
+      </div>
 
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            particles.forEach(p => {
-                p.update();
-                p.draw();
-            });
+      <div class="legend">
+        <div class="legend-row">
+          <div class="no">01</div>
+          <div class="cat">Frontend</div>
+          <div class="chips">
+            <span class="chip">React.js</span><span class="chip">Angular</span><span class="chip">Svelte</span>
+            <span class="chip">TypeScript</span><span class="chip">JavaScript</span><span class="chip">HTML5 / CSS3</span>
+            <span class="chip">UI/UX</span>
+          </div>
+        </div>
+        <div class="legend-row">
+          <div class="no">02</div>
+          <div class="cat">Backend</div>
+          <div class="chips">
+            <span class="chip">Spring Boot</span><span class="chip">Express.js</span><span class="chip">Symfony</span>
+            <span class="chip">Laravel</span><span class="chip">Django</span><span class="chip">Flask</span>
+            <span class="chip">Java</span><span class="chip">Python</span><span class="chip">PHP</span>
+          </div>
+        </div>
+        <div class="legend-row">
+          <div class="no">03</div>
+          <div class="cat">Data &amp; storage</div>
+          <div class="chips">
+            <span class="chip">MongoDB</span><span class="chip">MySQL</span><span class="chip">PostgreSQL</span>
+            <span class="chip">Qdrant</span><span class="chip">Redis</span><span class="chip">Kafka</span>
+          </div>
+        </div>
+        <div class="legend-row">
+          <div class="no">04</div>
+          <div class="cat">DevOps &amp; cloud</div>
+          <div class="chips">
+            <span class="chip">Docker</span><span class="chip">Kubernetes</span><span class="chip">Jenkins</span>
+            <span class="chip">GitHub Actions</span><span class="chip">GitLab CI/CD</span><span class="chip">SonarQube</span>
+            <span class="chip">Trivy</span><span class="chip">Nexus</span><span class="chip">Prometheus</span><span class="chip">Grafana</span>
+          </div>
+        </div>
+        <div class="legend-row">
+          <div class="no">05</div>
+          <div class="cat">AI &amp; ML</div>
+          <div class="chips">
+            <span class="chip">Python</span><span class="chip">Machine Learning</span><span class="chip">RAG</span>
+            <span class="chip">OpenAI</span><span class="chip">Hugging Face</span><span class="chip">Groq / Llama</span>
+            <span class="chip">Model Serving</span><span class="chip">Jupyter</span>
+          </div>
+        </div>
+        <div class="legend-row">
+          <div class="no">06</div>
+          <div class="cat">Mobile</div>
+          <div class="chips">
+            <span class="chip">Flutter</span><span class="chip">Dart</span><span class="chip">iOS / Android</span><span class="chip">BLoC / Cubit</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-            particles.forEach((p1, i) => {
-                particles.slice(i + 1).forEach(p2 => {
-                    const dx = p1.x - p2.x;
-                    const dy = p1.y - p2.y;
-                    const dist = Math.sqrt(dx * dx + dy * dy);
+  <!-- ============ FEATURED PROJECT — MYBEE ============ -->
+  <section id="mybee">
+    <div class="wrap">
+      <div class="sheet-head">
+        <h2>Featured project</h2>
+        <span class="sheet-no">SHEET <b>02</b> / FLAGSHIP</span>
+      </div>
 
-                    if (dist < 150) {
-                        ctx.beginPath();
-                        ctx.moveTo(p1.x, p1.y);
-                        ctx.lineTo(p2.x, p2.y);
-                        ctx.strokeStyle = `rgba(0, 242, 254, ${0.2 * (1 - dist / 150)})`;
-                        ctx.stroke();
-                    }
-                });
-            });
+      <div class="feature">
+        <div class="feature-top">
+          <span class="feature-tag">FINAL-YEAR ENGINEERING PROJECT — 2025/2026</span>
+          <span class="status">PRIVATE REPOSITORY</span>
+        </div>
+        <h3>MyBee — AI-assisted electric vehicle rental platform</h3>
+        <div class="sub">Built for Akkurad (Tunisia) · Full-time engineering internship</div>
 
-            requestAnimationFrame(animate);
-        }
+        <p class="body-text">
+          MyBee digitizes the end-to-end rental of light electric vehicles for last-mile delivery:
+          onboarding with OCR identity checks, booking and payment, electronic contract signature,
+          live GPS tracking with geofencing, and return inspection with damage reporting.
+          The standout piece is a conversational assistant that sits on top of the platform: it can
+          answer questions, recommend a vehicle, quote a price, or pull up an invoice — grounded in
+          the app's real data, never guessing.
+        </p>
 
-        animate();
+        <div class="mini-arch">
+          <svg viewBox="0 0 900 190" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs>
+              <marker id="arrowhead" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                <path d="M0,0 L6,3 L0,6 Z" fill="var(--line-300)"/>
+              </marker>
+              <marker id="arrowhead-accent" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+                <path d="M0,0 L6,3 L0,6 Z" fill="var(--accent)"/>
+              </marker>
+            </defs>
 
-        window.addEventListener('resize', resizeCanvas);
+            <g class="arch-box">
+              <rect x="10" y="55" width="170" height="80"/>
+              <text x="95" y="88" text-anchor="middle">FLUTTER CLIENT</text>
+              <text class="lbl" x="95" y="104" text-anchor="middle">iOS / Android</text>
+              <text class="lbl" x="95" y="118" text-anchor="middle">Agent chat UI</text>
+            </g>
 
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
-        });
-    </script>
+            <line class="arch-arrow" x1="180" y1="95" x2="240" y2="95"/>
+
+            <g class="arch-box">
+              <rect x="245" y="30" width="200" height="130"/>
+              <text x="345" y="58" text-anchor="middle">SPRING BOOT BACKEND</text>
+              <text class="lbl" x="345" y="76" text-anchor="middle">REST + SSE · JWT auth</text>
+              <text class="lbl" x="345" y="92" text-anchor="middle">Reservations · contracts</text>
+              <text class="lbl" x="345" y="108" text-anchor="middle">Payments · invoices</text>
+              <text class="lbl" x="345" y="124" text-anchor="middle">MongoDB · Redis</text>
+              <text class="lbl" x="345" y="140" text-anchor="middle">Stripe · Firebase</text>
+            </g>
+
+            <line class="arch-arrow accent" x1="445" y1="70" x2="510" y2="70"/>
+            <line class="arch-arrow" x1="445" y1="120" x2="510" y2="120"/>
+
+            <g class="arch-box">
+              <rect x="515" y="10" width="185" height="90"/>
+              <text x="607" y="38" text-anchor="middle">AI AGENT</text>
+              <text class="lbl" x="607" y="56" text-anchor="middle">Groq · Llama 3.3 70B</text>
+              <text class="lbl" x="607" y="72" text-anchor="middle">RAG · Ollama · Qdrant</text>
+              <text class="lbl" x="607" y="88" text-anchor="middle">Tool calling</text>
+            </g>
+
+            <g class="arch-box">
+              <rect x="515" y="105" width="185" height="70"/>
+              <text x="607" y="130" text-anchor="middle">GO REALTIME</text>
+              <text class="lbl" x="607" y="147" text-anchor="middle">WebSocket · GPS tracking</text>
+              <text class="lbl" x="607" y="161" text-anchor="middle">via Kafka</text>
+            </g>
+
+            <line class="arch-arrow" x1="700" y1="55" x2="760" y2="55"/>
+            <line class="arch-arrow" x1="700" y1="140" x2="760" y2="140"/>
+
+            <g class="arch-box">
+              <rect x="765" y="20" width="125" height="150"/>
+              <text x="827" y="46" text-anchor="middle">DATA</text>
+              <text class="lbl" x="827" y="66" text-anchor="middle">MongoDB</text>
+              <text class="lbl" x="827" y="82" text-anchor="middle">Qdrant vectors</text>
+              <text class="lbl" x="827" y="98" text-anchor="middle">Redis cache</text>
+              <text class="lbl" x="827" y="114" text-anchor="middle">Kafka events</text>
+              <text class="lbl" x="827" y="130" text-anchor="middle">File storage</text>
+              <text class="lbl" x="827" y="150" text-anchor="middle">GitLab CI/CD</text>
+            </g>
+          </svg>
+        </div>
+
+        <div class="stack">
+          <span class="chip">Flutter</span><span class="chip">Spring Boot</span><span class="chip">Go</span>
+          <span class="chip">MongoDB</span><span class="chip">Kafka</span><span class="chip">Qdrant</span>
+          <span class="chip">Groq / Llama 3.3</span><span class="chip">RAG</span><span class="chip">Stripe</span>
+          <span class="chip">GitLab CI/CD</span><span class="chip">Docker</span><span class="chip">Trivy</span>
+        </div>
+
+        <p class="note"><b>Note —</b> academic project developed under an industry NDA; source is not publicly available. Happy to walk through the architecture and demo in an interview.</p>
+        <div style="height:26px;"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ OTHER PROJECTS ============ -->
+  <section id="projects">
+    <div class="wrap">
+      <div class="sheet-head">
+        <h2>Other projects</h2>
+        <span class="sheet-no">SHEET <b>03</b> / RECORD</span>
+      </div>
+
+      <div class="proj-row">
+        <div class="proj-icon">
+          <svg viewBox="0 0 52 52"><rect x="4" y="8" width="44" height="32" rx="1"/><line x1="4" y1="16" x2="48" y2="16"/><circle cx="10" cy="12" r="1.2"/></svg>
+        </div>
+        <div class="proj-body">
+          <h4>FlowPi <span class="status">TEAM PROJECT</span></h4>
+          <p>Academic project-management platform with role-based access, skill-based team formation,
+          and AI modules for automated evaluation, plagiarism detection, and personalized recommendations
+          via Hugging Face and OpenAI.</p>
+          <div class="stack">
+            <span class="chip">React.js</span><span class="chip">Express.js</span><span class="chip">MongoDB</span><span class="chip">AI/NLP</span>
+          </div>
+          <div class="proj-links">
+            <a class="proj-link" href="https://github.com/nouraboussaoud/FlowPiFront" target="_blank">Frontend</a>
+            <a class="proj-link" href="https://github.com/nouraboussaoud/IntegratedProjectManagementApplication" target="_blank">Full project</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-row">
+        <div class="proj-icon">
+          <svg viewBox="0 0 52 52"><circle cx="26" cy="26" r="14"/><circle cx="26" cy="26" r="4"/><line x1="26" y1="4" x2="26" y2="12"/><line x1="26" y1="40" x2="26" y2="48"/></svg>
+        </div>
+        <div class="proj-body">
+          <h4>Andromeda — AI Memories <span class="status">TEAM PROJECT</span></h4>
+          <p>Journaling app with AI-powered text and image analysis, memory albums, and time capsules.
+          Uses Hugging Face and OpenAI for emotional sentiment detection and memory summarization.</p>
+          <div class="stack">
+            <span class="chip">Django</span><span class="chip">Python</span><span class="chip">OpenAI</span><span class="chip">Hugging Face</span><span class="chip">PostgreSQL</span>
+          </div>
+          <div class="proj-links">
+            <a class="proj-link" href="https://github.com/nouraboussaoud/Andromeda" target="_blank">View repository</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-row">
+        <div class="proj-icon">
+          <svg viewBox="0 0 52 52"><rect x="6" y="6" width="40" height="40" rx="1"/><path d="M14,32 L22,20 L30,28 L38,14"/></svg>
+        </div>
+        <div class="proj-body">
+          <h4>Student Performance API <span class="status">TEAM PROJECT</span></h4>
+          <p>Flask API that deploys ML models to production, turning exploratory Jupyter notebooks into
+          an operational prediction service.</p>
+          <div class="stack">
+            <span class="chip">Flask</span><span class="chip">Python</span><span class="chip">Machine Learning</span><span class="chip">REST API</span>
+          </div>
+          <div class="proj-links">
+            <a class="proj-link" href="https://github.com/nouraboussaoud/student-performance-api" target="_blank">View repository</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-row">
+        <div class="proj-icon">
+          <svg viewBox="0 0 52 52"><rect x="6" y="10" width="16" height="22"/><rect x="30" y="10" width="16" height="22"/><line x1="22" y1="21" x2="30" y2="21"/></svg>
+        </div>
+        <div class="proj-body">
+          <h4>BookShare <span class="status">TEAM PROJECT</span></h4>
+          <p>Community book-sharing platform with personal library management and a user-to-user lending
+          system. Hugging Face powers recommendations and sentiment-based review analysis.</p>
+          <div class="stack">
+            <span class="chip">Laravel</span><span class="chip">PHP</span><span class="chip">MySQL</span>
+          </div>
+          <div class="proj-links">
+            <a class="proj-link" href="https://github.com/nouraboussaoud/bookShare" target="_blank">View repository</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-row">
+        <div class="proj-icon">
+          <svg viewBox="0 0 52 52"><rect x="4" y="22" width="10" height="10"/><rect x="21" y="22" width="10" height="10"/><rect x="38" y="22" width="10" height="10"/><line x1="14" y1="27" x2="21" y2="27"/><line x1="31" y1="27" x2="38" y2="27"/></svg>
+        </div>
+        <div class="proj-body">
+          <h4>DevOps — CI/CD Pipeline <span class="status">INTERNSHIP</span></h4>
+          <p>Full pipeline automation with Jenkins, Docker, Kubernetes, and SonarQube for a Spring Boot /
+          Angular application, from commit to deployment. Completed as an internship at Digital Power
+          Consulting (DPC), Tunis (06/2024 – 08/2024).</p>
+          <div class="stack">
+            <span class="chip">Jenkins</span><span class="chip">Docker</span><span class="chip">Kubernetes</span><span class="chip">SonarQube</span>
+          </div>
+          <div class="proj-links">
+            <a class="proj-link" href="https://github.com/nouraboussaoud/achat-4TWIN9-groupe-6" target="_blank">View repository</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-row">
+        <div class="proj-icon">
+          <svg viewBox="0 0 52 52"><circle cx="26" cy="18" r="8"/><path d="M10,44 C10,32 42,32 42,44"/></svg>
+        </div>
+        <div class="proj-body">
+          <h4>Manager — User Management <span class="status">INTERNSHIP</span></h4>
+          <p>User and account management system with Keycloak authentication, built with Spring Boot
+          and Angular. Completed as an internship at NA Soft, Tunis (07/2025 – 09/2025). Also included
+          code quality analysis with SonarQube.</p>
+          <div class="stack">
+            <span class="chip">Spring Boot</span><span class="chip">Angular</span><span class="chip">Keycloak</span><span class="chip">JWT</span>
+          </div>
+          <div class="proj-links">
+            <a class="proj-link" href="https://github.com/nouraboussaoud/Manager" target="_blank">View repository</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-row">
+        <div class="proj-icon">
+          <svg viewBox="0 0 52 52"><path d="M26,6 C34,14 42,22 26,46 C10,22 18,14 26,6 Z"/></svg>
+        </div>
+        <div class="proj-body">
+          <h4>Nature Nerd Network <span class="status">TEAM PROJECT</span></h4>
+          <p>Nature-themed social network combining e-commerce, events, a reward system, interactive
+          quizzes, and environmental certifications.</p>
+          <div class="stack">
+            <span class="chip">Symfony</span><span class="chip">PHP</span><span class="chip">MySQL</span><span class="chip">Doctrine ORM</span>
+          </div>
+          <div class="proj-links">
+            <a class="proj-link" href="https://github.com/nouraboussaoud/NNN1" target="_blank">View repository</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-row">
+        <div class="proj-icon">
+          <svg viewBox="0 0 52 52"><path d="M12,44 L20,20 L32,20 L40,44"/><line x1="20" y1="20" x2="20" y2="8"/><line x1="32" y1="20" x2="32" y2="8"/></svg>
+        </div>
+        <div class="proj-body">
+          <h4>Plumber — Service Marketplace <span class="status">SOLO</span></h4>
+          <p>Platform connecting clients with plumbing service providers, with intervention management
+          and real-time tracking of jobs.</p>
+          <div class="stack">
+            <span class="chip">Svelte</span><span class="chip">Full-Stack</span>
+          </div>
+          <div class="proj-links">
+            <a class="proj-link" href="https://github.com/nouraboussaoud/plombier" target="_blank">View repository</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-row">
+        <div class="proj-icon">
+          <svg viewBox="0 0 52 52"><rect x="6" y="14" width="40" height="28" rx="1"/><line x1="6" y1="20" x2="46" y2="20"/><line x1="14" y1="30" x2="30" y2="30"/></svg>
+        </div>
+        <div class="proj-body">
+          <h4>Company Website <span class="status">INTERNSHIP</span></h4>
+          <p>Fully responsive company website built with semantic HTML, modern CSS, and JavaScript
+          interactivity. Completed as an internship at Société des Ciments de Gabès, Gabès
+          (07/2023 – 08/2023).</p>
+          <div class="stack">
+            <span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-row">
+        <div class="proj-icon">
+          <svg viewBox="0 0 52 52"><rect x="8" y="8" width="36" height="36"/><rect x="18" y="18" width="16" height="16"/></svg>
+        </div>
+        <div class="proj-body">
+          <h4>ARKI — Desktop Application <span class="status">TEAM PROJECT</span></h4>
+          <p>Native Linux application written in C, with a GTK interface built through Glade.</p>
+          <div class="stack">
+            <span class="chip">C</span><span class="chip">GTK+</span><span class="chip">Glade</span><span class="chip">Linux</span>
+          </div>
+          <div class="proj-links">
+            <a class="proj-link" href="https://github.com/nouraboussaoud/ARKI" target="_blank">View repository</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ CAPABILITIES (services) ============ -->
+  <section id="services">
+    <div class="wrap">
+      <div class="sheet-head">
+        <h2>Capabilities</h2>
+        <span class="sheet-no">SHEET <b>04</b> / SPEC</span>
+      </div>
+
+      <div class="cap-grid">
+        <div class="cap">
+          <span class="num">A</span>
+          <h4>Full-stack web development</h4>
+          <p>End-to-end web applications with React, Angular, Spring Boot, or Django — from data model
+          to deployed interface.</p>
+        </div>
+        <div class="cap">
+          <span class="num">B</span>
+          <h4>DevOps &amp; CI/CD</h4>
+          <p>Pipelines built on Docker, Kubernetes, Jenkins, and GitHub/GitLab Actions, with quality
+          gates and monitoring wired in from day one.</p>
+        </div>
+        <div class="cap">
+          <span class="num">C</span>
+          <h4>Applied AI</h4>
+          <p>RAG pipelines, LLM tool-calling, and model serving — integrated where they solve a real
+          problem, backed by real application data rather than guesswork.</p>
+        </div>
+        <div class="cap">
+          <span class="num">D</span>
+          <h4>API design &amp; integration</h4>
+          <p>Secure, documented REST APIs with proper authentication, built to connect cleanly with
+          the systems around them.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <footer id="contact">
+    <div class="wrap">
+      <div class="sheet-head">
+        <h2>Get in touch</h2>
+        <span class="sheet-no">SHEET <b>05</b> / CONTACT</span>
+      </div>
+
+      <div class="contact-list">
+        <a class="contact-row" href="mailto:nour.aboussaoud@esprit.tn">
+          <span class="k">EMAIL</span>
+          <span class="v">nour.aboussaoud@esprit.tn <span class="arrow">▸</span></span>
+        </a>
+        <a class="contact-row" href="https://github.com/nouraboussaoud" target="_blank">
+          <span class="k">GITHUB</span>
+          <span class="v">github.com/nouraboussaoud <span class="arrow">▸</span></span>
+        </a>
+        <a class="contact-row" href="https://www.linkedin.com/in/nour-aboussaoud-231096252/" target="_blank">
+          <span class="k">LINKEDIN</span>
+          <span class="v">linkedin.com/in/nour-aboussaoud <span class="arrow">▸</span></span>
+        </a>
+        <a class="contact-row" href="tel:27596886">
+          <span class="k">PHONE</span>
+          <span class="v">27 596 886 <span class="arrow">▸</span></span>
+        </a>
+      </div>
+
+      <div class="meta">
+        <span>© 2026 Nour Aboussaoud — All rights reserved</span>
+        <span>Ariana, Tunisia</span>
+      </div>
+    </div>
+  </footer>
+
 </body>
 </html>
